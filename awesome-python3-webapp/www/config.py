@@ -14,9 +14,9 @@ class Dict(dict):
     # **kw: 关键字参数(组织参数为dict)
     # *variable：可变参数(组织参数为tuple)
     def __init__(self, names=(), values=(), **kw):        
-        # super(Dict, self)首先找到Dict的父类（就是类dict），然后 `把类Dict的对象self转换为类A的对象`
+        # super(Dict, self)首先找到Dict的父类（就是类dict），然后 `把类Dict的对象self转换为类 dict 的对象`
         super(Dict, self).__init__(**kw)
-        # zip(a,b)zip()函数分别从a和b依次各取出一个元素组成元组，再将依次组成的元组组合成一个新的迭代器--新的zip类型数据(可以装换为list、tuple等)
+        # zip(a,b) zip()函数分别从a和b依次各取出一个元素组成元组，再将依次组成的元组组合成一个新的迭代器--新的zip类型数据(可以装换为list、tuple等)
         for k, v in zip(names, values):
             self[k] = v
 
@@ -42,11 +42,13 @@ def merge(defaults, override):
             r[k] = v
     return r
 
+# 把d这个dict的键值对存入我们自定义的Dict中，然后返回一个新的Dict 也就是D
 def toDict(d):
     D = Dict()
     for k, v in d.items():
         D[k] = toDict(v) if isinstance(v, dict) else v
     return D
+
 
 configs = config_default.configs
 
