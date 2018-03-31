@@ -3,6 +3,10 @@
 
 import asyncio, os, inspect, logging, functools
 
+# urllib 库
+# 1. request处理客户端的请求
+# 2. response处理服务端的响应
+# 3. parse会解析url
 from urllib import parse
 
 from aiohttp import web
@@ -39,6 +43,7 @@ def post(path):
         return wrapper
     return decorator
 
+# 获取函数必选参数
 def get_required_kw_args(fn):
     args = []
     params = inspect.signature(fn).parameters
@@ -47,6 +52,7 @@ def get_required_kw_args(fn):
             args.append(name)
     return tuple(args)
 
+#
 def get_named_kw_args(fn):
     args = []
     params = inspect.signature(fn).parameters

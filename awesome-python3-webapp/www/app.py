@@ -3,7 +3,7 @@
 
 import logging; logging.basicConfig(level=logging.INFO)
 
-# asyncio:实现单线程并发的IO操作
+# asyncio:实现单线程并发的IO操作(如:HTTP连接)
 # os:操作系统相关功能(处理文件和目录)
 
 import asyncio, os, json, time
@@ -108,7 +108,7 @@ def data_factory(app, handler):
 
 
 
-# 
+# response for http request
 @asyncio.coroutine
 def response_factory(app, handler):
     @asyncio.coroutine
@@ -203,7 +203,7 @@ def init(loop):
     add_routes(app, 'handlers')
 
     add_static(app)
-    # 监听127.0.0.1:9000 端口的http请求
+    # 监听127.0.0.1:9000 端口的http请求(利用asyncio创建TCP服务)
     srv = yield from loop.create_server(app.make_handler(), '127.0.0.1', 9000)
     logging.info('server started at http://127.0.0.1:9000...')
     # 把监听http请求的这个协程返回给loop - 用以持续监听http请求

@@ -88,16 +88,6 @@ def index(*, page='1'):
         'blogs': blogs
     }
 
-
-# test URL 处理函数
-# @get('/')
-# async def index(request):
-#     users = await User.findAll()
-#     return {
-#         '__template__':'test.html',
-#         'users':users
-#     }
-
 @get('/blog/{id}')
 def get_blog(id):
     blog = yield from Blog.find(id)

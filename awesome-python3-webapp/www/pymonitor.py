@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
+# sys模块包含了Python解释器和它的环境有关的函数
 import os, sys, time, subprocess
 
 from watchdog.observers import Observer

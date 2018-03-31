@@ -6,6 +6,10 @@ JSON API definition.
 '''
 
 # inspect模块：检查运行模块的一些基本信息
+# 1. 对是否是模块，框架，函数等进行类型检查
+# 2. 获取源码
+# 3. 获取类或函数的参数的信息
+# 4. 解析堆栈
 import json, logging, inspect, functools
 
 class Page(object):
@@ -55,7 +59,7 @@ class Page(object):
 
     def __str__(self):
         return 'item_count: %s, page_count: %s, page_index: %s, page_size: %s, offset: %s, limit: %s' % (self.item_count, self.page_count, self.page_index, self.page_size, self.offset, self.limit)
-
+    # __repr__和__str__这两个方法都是用于显示的，__str__是面向用户的，而__repr__面向程序员。
     __repr__ = __str__
 
 class APIError(Exception):
@@ -90,5 +94,6 @@ class APIPermissionError(APIError):
         super(APIPermissionError, self).__init__('permission:forbidden', 'permission', message)
 
 if __name__=='__main__':
+    # doctest 测试模块
     import doctest
     doctest.testmod()

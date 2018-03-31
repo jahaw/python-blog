@@ -43,6 +43,7 @@ def merge(defaults, override):
     return r
 
 # 把d这个dict的键值对存入我们自定义的Dict中，然后返回一个新的Dict 也就是D
+# 存在问题: 此处递归调用,为何实例 D 不会受影响???
 def toDict(d):
     D = Dict()
     for k, v in d.items():
